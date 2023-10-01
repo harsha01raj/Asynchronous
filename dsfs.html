@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Js timer</title>
+    <style>
+      * {
+        text-align: center;
+        padding: 2px;
+        margin: 5px;
+      }
+      #display {
+        border: 2px solid red;
+        width: 100px;
+        margin: auto;
+      }
+      button {
+        font-size: 20px;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Timer</h1>
+    <div id="timeinput">
+      <label for="Hours">Hours:</label>
+      <input type="number" id="hour" min="0" />
+      <label for="Minutes"> Minutes:</label>
+      <input type="number" id="min" min="0" max="59" />
+      <label for="Seconds"> Seconds:</label>
+      <input type="number" id="sec" min="0" max="59" />
+    </div>
+    <div id="display">00:00:00</div>
+    <button onclick="start()">Start</button>
+    <button onclick="pause()">Pause</button>
+    <button onclick="reset()">Reset</button>
+    <div id="run">False</div>
+  </body>
+  <script>
+    let run = document.getElementById("run");
+      let hour = document.getElementById("hour");
+      let min = document.getElementById("min");
+      let sec = document.getElementById("sec");
+      let running = false;
+      let timer = null;
+      
+      
+    function start() {
+      let h=hour.value;
+      let m=min.value;
+      let s=sec.value;
+      
+      console.log(h);
+      console.log(m);
+      console.log(s);
+      if (s > 60) {
+        m = parseInt(m) + Math.floor(s / 60);
+        s = s % 60;
+      }
+      if (min > 60) {
+        h = parseInt(h) + Math.floor(m / 60);
+        m = m % 60;
+      }
+      document.getElementById("display").textContent =
+        h + ":" + m + ":" + s;
+        if(running==false){
+            running=true;
+            timer=setInterval(updatewatch,1000);
+        }
+        run.textContent = running;
+    }
+  </script>
+</html>
